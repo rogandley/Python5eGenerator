@@ -6,17 +6,8 @@ Author: rogandley
 
 import random as r
 import array as arr
-import genLib
-
-def main():
-    print("DnD 5e Character Generator\n")
-
-    stats = createStats()
-
-main()
-
-
-
+from genLib.Stats import Stats
+from genLib import nameLists
 
 def rollTheDice():
     # generate a number based on 4d6 drop lowest
@@ -24,29 +15,20 @@ def rollTheDice():
     for x in range(4):
         rollsArray.append(r.randint(1,6))
     # remove the maximum rolled number from the array
-    rollsArray.pop(rollsArray.index(max(rollsArray)))
+    rollsArray.pop(rollsArray.index(min(rollsArray)))
     value = sum(rollsArray)
     # return the sum
     return value
 
+def main():
+    print("DnD 5e Character Generator\n")
 
-"""
-Class to hold the stat array for a character
-"""
+    stats = Stats(rollTheDice(), rollTheDice(), rollTheDice(), rollTheDice(), rollTheDice(), rollTheDice())
+    print("Strength:\t\t", stats.stre)
+    print("Dexterity:\t\t", stats.dex)
+    print("Constitution:\t", stats.con)
+    print("Intelligence:\t", stats.inte)
+    print("Wisdom:\t\t\t", stats.wis)
+    print("Charisma:\t\t", stats.cha)
 
-class Stats():
-    def __init__(self, stre, dex, con, inte, wis, cha):
-        self.stre = stre
-        self.dex = dex
-        self.con = con
-        self.inte = inte
-        self.wis = wis
-        self.cha = cha
-
-def setStats(stats, stre, dex, con, inte, wis, cha):
-    stats.str = stre
-    stats.dex = dex
-    stats.con = con
-    stats.int = inte
-    stats.wis = wis
-    stats.cha = cha
+main()
