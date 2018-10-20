@@ -4,12 +4,14 @@ Date:   10/19/18
 Author: rogandley
 """
 
-import random
+import random as r
+import array as arr
 import genLib
 
 def main():
     print("DnD 5e Character Generator\n")
 
+    stats = createStats()
 
 main()
 
@@ -18,8 +20,14 @@ main()
 
 def rollTheDice():
     # generate a number based on 4d6 drop lowest
-
-    return
+    rollsArray = []
+    for x in range(4):
+        rollsArray.append(r.randint(1,6))
+    # remove the maximum rolled number from the array
+    rollsArray.pop(rollsArray.index(max(rollsArray)))
+    value = sum(rollsArray)
+    # return the sum
+    return value
 
 
 """
@@ -27,15 +35,18 @@ Class to hold the stat array for a character
 """
 
 class Stats():
-    _slots = ((int, 'str'), (int, 'dex'), (int, 'con'), (int, 'int'), (int, 'wis'), (int, 'cha'))
+    def __init__(self, stre, dex, con, inte, wis, cha):
+        self.stre = stre
+        self.dex = dex
+        self.con = con
+        self.inte = inte
+        self.wis = wis
+        self.cha = cha
 
-def createStats():
-    return Stats(0, 0, 0, 0, 0, 0)
-
-def setStats(stats, str, dex, con, int, wis, cha):
-    stats.str = str
+def setStats(stats, stre, dex, con, inte, wis, cha):
+    stats.str = stre
     stats.dex = dex
     stats.con = con
-    stats.int = int
+    stats.int = inte
     stats.wis = wis
     stats.cha = cha
