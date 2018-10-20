@@ -11,14 +11,14 @@ def main():
     print("DnD 5e Character Generator\n")
 
 
-
-
+main()
 
 
 
 
 def rollTheDice():
     # generate a number based on 4d6 drop lowest
+
     return
 
 
